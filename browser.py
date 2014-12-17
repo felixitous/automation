@@ -132,7 +132,6 @@ def sound_the_horn(driver):
 	#just to make sure the horn is actually sounded
 	# time.sleep(3)
 
-	driver.refresh()
 	kings_reward_detector(driver)
 
 
@@ -146,6 +145,7 @@ def sound_the_horn(driver):
 			wait_time = int(string_array[0])
 		except (NoSuchElementException, ValueError) as e:
 			time.sleep(1)
+			driver.refresh()
 
 	return wait_time
 
