@@ -125,6 +125,7 @@ def sound_the_horn(driver):
 			and 'min' not in horn_timer_string):
 	
 		sound_horn = driver.find_element_by_class_name('hornbutton')
+		time.sleep(1)
 		sound_horn.click()
 		print 'sounding the horn'
 		switch_cheese(driver)
