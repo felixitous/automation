@@ -21,7 +21,7 @@ for line in login_file:
 
 
 def init():
-	return webdriver.Firefox()
+	return webdriver.Chrome()
 
 def login(driver):
 	print driver.title
