@@ -21,7 +21,7 @@ for line in login_file:
 
 
 def init():
-	return webdriver.Chrome()
+	return webdriver.Firefox()
 
 def login(driver):
 	print driver.title
@@ -174,6 +174,5 @@ def main():
 		time_printer(actual_time)
 		time.sleep(actual_time)
 
-# main()
-facebook_warning()
-
+main()
+# facebook_warning()
