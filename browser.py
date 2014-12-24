@@ -13,7 +13,7 @@ lines_from_file = []
 url = 'http://www.google.com'
 url_game = 'http://www.mousehuntgame.com'
 url_google = 'https://accounts.google.com'
-url_mightytext = 'https://plus.google.com/hangouts'
+url_mightytext = 'https://mail.google.com'
 login_file = open('login.txt', 'r')
 for line in login_file:
 	lines_from_file.append(line.strip())
@@ -21,7 +21,7 @@ for line in login_file:
 
 
 def init():
-	return webdriver.Firefox()
+	return webdriver.Chrome()
 
 def login(driver):
 	print driver.title
@@ -39,49 +39,34 @@ def facebook_warning():
 	driver = init()
 	driver.get(url_google)
 
+	time.sleep(1)
 	email = driver.find_element_by_name('Email')
-	email.send_keys(lines_from_file[2])
+	email.send_keys('kinglamb777@gmail.com')
+	time.sleep(1)
 	password = driver.find_element_by_name('Passwd')
-	password.send_keys(lines_from_file[3])
+	password.send_keys('naruto77')
 	login = driver.find_element_by_name('signIn')
 	login.click()
 
 	driver.get(url_mightytext)
-	time.sleep(2)
 
-	try:
-		hangout_button = driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[3]/div[1]/div[2]/div[3]/div')
-	except NoSuchElementException:
-		hangout_button = driver.find_element_by_xpath('//*[@id="content"]/div[2]/div[3]/div[1]/div[2]/div[2]/div')
-
-	#constant retry until the Hangouts button is clicked
-	while (True):
-		try:
-			hangout_button.click()
-			break
-		except (ElementNotVisibleException, WebDriverException):
-			time.sleep(1)
+	time.sleep(5)
+	compose_button = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td[1]/table[1]/tbody/tr[1]/td/b/a')
+	compose_button.click()
 
 
-	time.sleep(2)
-	iframe = driver.find_element_by_xpath('//*[@id="gtn-roster-iframe-id-b"]')
-	driver.switch_to_frame(iframe)
+	time.sleep(1)
+	address_line = driver.find_element_by_name('to')
+	address_line.send_keys('felixmbx@gmail.com')
+	time.sleep(1)
+	# address_line.send_keys(Keys.RETURN)
 
-	#consttant retry until the call field element can be found
-	while (True):
-		try:
-			call_field = driver.find_element_by_xpath('//*[@id=":4.vw"]/div/div[1]/div/div[2]/div/div[1]/div[2]/div/input')
-			call_field.click()
-			break
-		except NoSuchElementException:
-			time.sleep(1)
+	subject_line = driver.find_element_by_name('subject')
+	subject_line.send_keys('KING REWARD, PLZ SOLVE')
+	time.sleep(1)
 
-	call_field.send_keys('6267803858')
-	time.sleep(4)
-	call_field.send_keys(Keys.RETURN)
-	time.sleep(10)
-
-	driver.switch_to_default_content()
+	send_button = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td[2]/table[1]/tbody/tr/td[2]/form/table[3]/tbody/tr/td/input[1]')
+	send_button.click()
 
 	driver.quit()
 
@@ -132,6 +117,7 @@ def sound_the_horn(driver):
 	#just to make sure the horn is actually sounded
 	# time.sleep(3)
 
+	driver.refresh()
 	kings_reward_detector(driver)
 
 
@@ -146,6 +132,7 @@ def sound_the_horn(driver):
 		except (NoSuchElementException, ValueError) as e:
 			time.sleep(1)
 			driver.refresh()
+			time.sleep(1)
 
 	return wait_time
 
@@ -176,3 +163,4 @@ def main():
 
 main()
 # facebook_warning()
+
