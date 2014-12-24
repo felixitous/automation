@@ -23,6 +23,9 @@ for line in login_file:
 def init():
 	return webdriver.Chrome()
 
+def init_firefox():
+	return webdriver.Firefox()
+
 def login(driver):
 	print driver.title
 	username = driver.find_element_by_name('accountName')
@@ -36,7 +39,7 @@ def login(driver):
 
 # function for warning users when a king's reward has come up
 def facebook_warning():
-	driver = init()
+	driver = init_firefox()
 	driver.get(url_google)
 
 	email = driver.find_element_by_name('Email')
