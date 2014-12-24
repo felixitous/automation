@@ -52,11 +52,9 @@ def facebook_warning():
 	login.click()
 
 	driver.get(url_mightytext)
-
 	time.sleep(5)
 	compose_button = driver.find_element_by_xpath('/html/body/table[2]/tbody/tr/td[1]/table[1]/tbody/tr[1]/td/b/a')
 	compose_button.click()
-
 
 	time.sleep(1)
 	address_line = driver.find_element_by_name('to')
